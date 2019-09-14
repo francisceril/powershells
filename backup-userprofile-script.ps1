@@ -1,3 +1,6 @@
+# Defaults
+# Change accordingly to your environment
+
 $destination = "\\192.168.1.50\public"
 $folders = "Desktop",
     "Downloads",
@@ -9,6 +12,7 @@ $userProfile = $env:userprofile
 $appData = $env:localAPPDATA
 $timestamp = Get-Date -Format "dd-MMM-yyyy-hh-mm"
 
+# Calculate total backup size
 Write-Host -ForegroundColor Green "Calculating backup size for $username"
 foreach ($f in $folders) {
     $currentLocalFolder = $userProfile + "\" + $f
@@ -21,6 +25,7 @@ foreach ($f in $folders) {
 Write-Host -ForegroundColor Yellow "Total backup size for $username is $totalBackupSize MB"
 
 
+# Ask confirmation before proceeding
 $message = "Would you like to proceed the backup?";
 $Yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes","Yes";
 $No = New-Object System.Management.Automation.Host.ChoiceDescription "&No","No";
